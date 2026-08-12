@@ -22,6 +22,7 @@
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.2",
     "router": "^2.2.0",
+    "router-dom": "^3.3.0",
     "shadcn": "^4.16.0",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",

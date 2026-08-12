@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button"
 import Card, { DescriptiveCard, EmergencyCard, IllustrativeCard, PngCard, QuestionCard } from "@/components/ui/Card"
 import NavBar from "@/components/ui/NavBar.tsx"
-import { HeartPulse, ShieldCheck, Sparkles, Users } from "lucide-react"
+import { CardObject, DescriptiveCardObject, PngCardObject, questionCardObject } from "@/utils/object"
+import { HeartPulse } from "lucide-react"
 
 export default function Landing() {
     return (
@@ -29,8 +30,8 @@ export default function Landing() {
                             </Button>
                         </div>
                         <div className="grid gap-3 sm:grid-cols-2">
-                            <div className="rounded-3xl border border-red-100 bg-red-50 p-5">
-                                <p className="text-sm text-red-500">Campagnes actives</p>
+                            <div className="rounded-3xl border border-red-100 bg-red-100 p-5">
+                                <p className="text-sm text-primary">Campagnes actives</p>
                                 <p className="mt-2 text-2xl font-semibold">11</p>
                             </div>
                             <div className="rounded-3xl border border-slate-100 bg-slate-50 p-5">
@@ -41,9 +42,9 @@ export default function Landing() {
                     </div>
                     <div className="flex w-full items-center justify-center md:w-1/2">
                         <div className="relative flex h-full w-full max-w-md overflow-hidden rounded-[2rem] border border-red-100 bg-red-50 p-6 shadow-md">
-                            <div className="flex h-full w-full flex-col justify-between rounded-[1.5rem] bg-white p-6 shadow-sm">
+                            <div className="flex h-full w-full flex-col justify-between rounded-[1.5rem] bg-primary/30 p-6 shadow-sm">
                                 <div>
-                                    <p className="text-sm uppercase tracking-[0.2em] text-red-500">Alerte urgente</p>
+                                    <p className="text-sm uppercase tracking-[0.2em] text-slate-800">Alerte urgente</p>
                                     <h2 className="mt-3 text-xl font-semibold text-slate-900">Groupe O- requis maintenant</h2>
                                 </div>
                                 <div className="grid gap-4 pt-4 sm:grid-cols-2">
@@ -64,9 +65,15 @@ export default function Landing() {
 
                 <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 md:px-8">
                     <div className="grid gap-5 md:grid-cols-3">
-                        <Card title="+3200" description="Donneurs actifs" color="bg-white text-slate-900" />
-                        <Card title="15" description="Banques de sang" color="bg-gradient-to-br from-red-500 to-red-700 text-white" />
-                        <Card title="98%" description="Réponse rapide" color="bg-white text-slate-900" />
+                        {CardObject.map((card, index) => (
+                            <Card
+                                key={index}
+                                title={card.title}
+                                description={card.description}
+                                color={card.color}
+                                className={card.className}
+                            />
+                        ))}
                     </div>
                 </section>
 
@@ -85,19 +92,17 @@ export default function Landing() {
 
                 <section className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 md:px-8">
                     <div className="grid gap-6 lg:grid-cols-2">
-                        <DescriptiveCard
-                            title="Gestion centralisée"
-                            url="src/assets/react.svg"
-                            className="h-56 rounded-[1.5rem] border border-slate-200"
-                            description="Suivez les poches de sang et les mouvements entre les centres depuis une interface claire."
-                        />
-                        <DescriptiveCard
-                            title="Mobilisation citoyenne"
-                            url="src/assets/react.svg"
-                            position="top-5 right-5 opacity-60"
-                            className="h-56 rounded-[1.5rem] border border-slate-200"
-                            description="Diffusez les campagnes et les alertes aux donneurs proches de votre zone." 
-                        />
+                        {DescriptiveCardObject.map((card, index) => (
+                            <DescriptiveCard
+                                key={index}
+                                title={card.title}
+                                url={card.url}
+                                position={card.position}
+                                className={card.className}
+                                description={card.description}
+                            />
+                        ))}
+                       
                     </div>
                 </section>
 
@@ -107,10 +112,15 @@ export default function Landing() {
                         <h3 className="mt-4 text-3xl font-semibold text-slate-900">Simple et rapide en 4 étapes</h3>
                     </div>
                     <div className="grid gap-4 md:grid-cols-4">
-                        <PngCard icon={<Users className="h-10 w-10 text-red-600" />} title="Inscription" description="Créez un compte en quelques minutes." />
-                        <PngCard icon={<ShieldCheck className="h-10 w-10 text-red-600" />} title="Alertes" description="Recevez les besoins de votre groupe sanguin." />
-                        <PngCard icon={<Sparkles className="h-10 w-10 text-red-600" />} title="Réponse" description="Répondez rapidement aux demandes locales." />
-                        <PngCard icon={<HeartPulse className="h-10 w-10 text-red-600" />} title="Don" description="Participez à sauver des vies." />
+                        {PngCardObject.map((card, index) => (
+                            <PngCard
+                                key={index}
+                                icon={card.icon}
+                                title={card.title}
+                                iclass={card.iclass}
+                                description={card.description}
+                            />
+                        ))}
                     </div>
                 </section>
 
@@ -120,19 +130,23 @@ export default function Landing() {
                         <h3 className="mt-4 text-3xl font-semibold text-slate-900">Questions fréquentes</h3>
                     </div>
                     <div className="space-y-4">
-                        <QuestionCard question="Comment faire un don de sang ?" answer="Prenez rendez-vous dans un centre partenaire et suivez les consignes avant la collecte." />
-                        <QuestionCard question="Qui peut recevoir des alertes ?" answer="Tous les donneurs inscrits reçoivent des alertes selon leur groupe sanguin et leur localisation." />
-                        <QuestionCard question="Mes données sont-elles protégées ?" answer="Oui, les informations restent privées et sont utilisées uniquement pour le suivi du don." />
+                        {questionCardObject.map((card, index) => (
+                            <QuestionCard
+                                key={index}
+                                question={card.question}
+                                answer={card.answer}
+                            />
+                        ))}
                     </div>
                 </section>
 
                 <section className="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-6 md:px-8">
-                    <div className="rounded-[2rem] border border-red-100 bg-red-50 p-8 shadow-sm">
+                    <div className="rounded-[2rem] border border-red-100 bg-primary/30 p-8 shadow-sm">
                         <div className="grid gap-6 lg:grid-cols-[1.4fr_0.6fr] lg:items-center">
                             <div>
-                                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-red-600">Prêt à commencer ?</p>
+                                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-800">Prêt à commencer ?</p>
                                 <h2 className="mt-4 text-3xl font-semibold text-slate-900">Inscrivez-vous et soyez alerté au bon moment.</h2>
-                                <p className="mt-4 max-w-2xl text-slate-600">Rejoignez la communauté et recevez des notifications dès qu’un besoin correspond à votre groupe sanguin.</p>
+                                <p className="mt-4 max-w-2xl text-slate-150">Rejoignez la communauté et recevez des notifications dès qu’un besoin correspond à votre groupe sanguin.</p>
                                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                                     <Button asChild variant="primary" size="lg" className="rounded-lg">
                                         <a href="/signup">Créer un compte</a>
