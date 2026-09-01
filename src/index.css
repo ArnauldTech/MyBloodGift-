@@ -31,6 +31,7 @@
     --color-muted: var(--muted);
     --color-secondary-foreground: var(--secondary-foreground);
     --color-secondary: var(--secondary);
+    --color-tertiary: var(--tertiary);
     --color-primary-foreground: var(--primary-foreground);
     --color-primary: var(--primary);
     --color-popover-foreground: var(--popover-foreground);
@@ -60,9 +61,10 @@
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(48.944% 0.19516 28.598);
+    --primary: #d32f2f;
     --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(49.211% 0.2574 270.64);
+    --secondary: #1976d2;
+    --tertiary: #388E3C;
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
     --muted-foreground: oklch(0.556 0 0);

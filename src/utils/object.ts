@@ -1,6 +1,9 @@
 
 
-import { HeartPulse, ShieldCheck, Sparkles, Users, type LucideIcon } from "lucide-react";
+import { HeartPulse, ShieldCheck, Sparkles, Users,  Bell,
+  CalendarDays,
+  ClipboardList,LayoutDashboard, Settings,
+  UserRound, type LucideIcon } from "lucide-react";
 
 
 export const CardObject =[
@@ -91,3 +94,19 @@ export const questionCardObject = [
         answer:"Oui, les informations restent privées et sont utilisées uniquement pour le suivi du don."
     }
 ]
+type NavItem = {
+  title: string
+  icon: LucideIcon
+  lien:string
+}
+
+
+  export const navItems: NavItem[] = [
+    { title: "Tableau de bord", icon: LayoutDashboard, lien:"/Dash" },
+    { title: "Dons", icon: HeartPulse,lien:"/Don" },
+    { title: "Demandes", icon: ClipboardList,lien:"/Demande" },
+    { title: "Rendez-vous", icon: CalendarDays,lien:"/RendezVous" },
+    { title: "Notifications", icon: Bell,lien:"/Notifications" },
+    { title: "Profil", icon: UserRound ,lien:"/profil"},
+    { title: "Paramètres", icon: Settings,lien:"/setting" },
+  ]
