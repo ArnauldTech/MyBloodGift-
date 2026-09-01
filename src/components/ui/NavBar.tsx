@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
 import Links from "./Links.tsx"
 import { Button } from "./button.tsx"
 
@@ -7,7 +6,7 @@ export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <nav className="w-full backdrop-blur-xl sticky top-0 z-50 shadow-md bg-linear-to-r from-gray-900/80 to-gray-800/80">
+    <nav className="w-full backdrop-blur-xl sticky top-0 z-50 shadow-md bg-linear-to-b from-sky-950 via-blue-950 to-indigo-950">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 sm:px-6 md:px-8 py-3 md:py-4">
         <div className="flex items-center gap-2 md:gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-red-500 to-red-700 font-bold text-white text-sm transition-transform hover:scale-110">
@@ -42,16 +41,16 @@ export default function NavBar() {
 
         <div className="hidden md:flex items-center gap-3">
           <Button asChild variant="primary" size="lg" className="rounded-lg text-sm font-semibold transition-all hover:shadow-lg">
-            <Link to="/signup">Créer un compte</Link>
+            <a href="/signup">Créer un compte</a>
           </Button>
           <Button asChild variant="secondary" size="lg" className="rounded-lg text-sm font-semibold transition-all hover:shadow-lg">
-            <Link to="/login">Connexion</Link>
+            <a href="/login">Connexion</a>
           </Button>
         </div>
       </div>
 
       {menuOpen && (
-        <div className="border-t border-white/10 bg-gray-900/95 px-4 sm:px-6 md:hidden">
+        <div className="border-t border-white/10 bg-linear-to-b from-sky-950 via-blue-950 to-indigo-950 px-4 sm:px-6 md:hidden">
           <ul className="flex flex-col gap-2 py-4 text-sm font-medium text-white">
             <Links way="/" text="Home" />
             <Links way="/about" text="About" />
@@ -61,10 +60,10 @@ export default function NavBar() {
           </ul>
           <div className="flex flex-col gap-2 pb-4">
             <Button asChild variant="primary" size="lg" className="w-full rounded-lg text-sm font-semibold transition-all">
-              <Link to="/signup">Créer un compte</Link>
+              <a href="/signup">Créer un compte</a>
             </Button>
             <Button asChild variant="secondary" size="lg" className="w-full rounded-lg text-sm font-semibold transition-all">
-              <Link to="/login">Connexion</Link>
+              <a href="/login">Connexion</a>
             </Button>
           </div>
         </div>
