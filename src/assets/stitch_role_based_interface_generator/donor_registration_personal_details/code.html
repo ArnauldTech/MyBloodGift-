@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My BloodGift - Donor Registration Step 2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "surface-tint": "#ba1a20",
+                      "primary-fixed-dim": "#ffb3ac",
+                      "background": "#f4faff",
+                      "surface-variant": "#d7e4ec",
+                      "inverse-surface": "#263238",
+                      "tertiary-fixed-dim": "#82db7e",
+                      "error": "#ba1a1a",
+                      "surface": "#f4faff",
+                      "on-surface-variant": "#5b403d",
+                      "on-primary-fixed": "#410003",
+                      "on-primary-container": "#fff2f0",
+                      "inverse-primary": "#ffb3ac",
+                      "surface-container-low": "#e9f6fd",
+                      "on-tertiary-fixed-variant": "#005312",
+                      "surface-bright": "#f4faff",
+                      "on-background": "#111d23",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface": "#111d23",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed": "#9df898",
+                      "on-secondary-fixed": "#001c3a",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#e6f3fb",
+                      "surface-dim": "#cfdce4",
+                      "on-secondary-container": "#003567",
+                      "on-tertiary-fixed": "#002204",
+                      "secondary": "#005faf",
+                      "secondary-container": "#54a0fe",
+                      "on-primary-fixed-variant": "#930010",
+                      "surface-container-high": "#ddeaf2",
+                      "tertiary": "#016619",
+                      "on-error": "#ffffff",
+                      "primary": "#af101a",
+                      "surface-container": "#e3f0f8",
+                      "surface-container-highest": "#d7e4ec",
+                      "tertiary-container": "#298030",
+                      "primary-container": "#d32f2f",
+                      "secondary-fixed": "#d4e3ff",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#004786",
+                      "secondary-fixed-dim": "#a5c8ff",
+                      "on-tertiary-container": "#daffd1",
+                      "on-tertiary": "#ffffff",
+                      "outline-variant": "#e4beba",
+                      "outline": "#8f6f6c",
+                      "primary-fixed": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "margin-desktop": "32px",
+                      "unit": "8px",
+                      "gutter": "24px",
+                      "container-max-width": "1280px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- Nav shell is suppressed for linear/transactional flow (Donor Registration) -->
+<header class="w-full bg-surface-container-lowest border-b border-outline-variant py-4 px-margin-mobile md:px-margin-desktop sticky top-0 z-50">
+<div class="max-w-container-max-width mx-auto flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[32px]">bloodtype</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">My BloodGift</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</header>
+<main class="flex-grow w-full px-margin-mobile md:px-margin-desktop py-8 md:py-12 max-w-[800px] mx-auto flex flex-col gap-8">
+<!-- Progress Tracker -->
+<div class="w-full">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-sm text-label-sm text-secondary">Step 2 of 3</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Personal Details</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-2/3 rounded-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 md:p-8 flex flex-col gap-8 shadow-sm">
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-2">Personal Details</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Please provide your personal information to continue the registration process.</p>
+</div>
+<form class="flex flex-col gap-6">
+<!-- Date of Birth & Gender -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface" for="dob">Date of Birth</label>
+<div class="relative">
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors pl-10" id="dob" name="dob" required="" type="date"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">calendar_today</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface" for="gender">Gender (Assigned at Birth)</label>
+<div class="relative">
+<select class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors appearance-none pl-10" id="gender" name="gender" required="">
+<option disabled="" selected="" value="">Select gender</option>
+<option value="male">Male</option>
+<option value="female">Female</option>
+</select>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">person</span>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+</div>
+</div>
+</div>
+<!-- Blood Type (Optional) -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface">Blood Type (Optional)</label>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-2">If you don't know it, we will test it during your donation.</p>
+<div class="grid grid-cols-4 md:grid-cols-8 gap-2">
+<label class="cursor-pointer">
+<input class="peer sr-only" name="blood_type" type="radio" value="A+"/>
+<div class="bg-surface border border-outline-variant rounded-lg p-3 text-center peer-checked:bg-secondary-container peer-checked:border-secondary peer-checked:text-on-secondary-container hover:bg-surface-container-high transition-colors font-body-md text-body-md">A+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="blood_type" type="radio" value="A-"/>
+<div class="bg-surface border border-outline-variant rounded-lg p-3 text-center peer-checked:bg-secondary-container peer-checked:border-secondary peer-checked:text-on-secondary-container hover:bg-surface-container-high transition-colors font-body-md text-body-md">A-</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="blood_type" type="radio" value="B+"/>
+<div class="bg-surface border border-outline-variant rounded-lg p-3 text-center peer-checked:bg-secondary-container peer-checked:border-secondary peer-checked:text-on-secondary-container hover:bg-surface-container-high transition-colors font-body-md text-body-md">B+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="blood_type" type="radio" value="B-"/>
+<div class="bg-surface border border-outline-variant rounded-lg p-3 text-center peer-checked:bg-secondary-container peer-checked:border-secondary peer-checked:text-on-secondary-container hover:bg-surface-container-high transition-colors font-body-md text-body-md">B-</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="blood_type" type="radio" value="AB+"/>
+<div class="bg-surface border border-outline-variant rounded-lg p-3 text-center peer-checked:bg-secondary-container peer-checked:border-secondary peer-checked:text-on-secondary-container hover:bg-surface-container-high transition-colors font-body-md text-body-md">AB+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="blood_type" type="radio" value="AB-"/>
+<div class="bg-surface border border-outline-variant rounded-lg p-3 text-center peer-checked:bg-secondary-container peer-checked:border-secondary peer-checked:text-on-secondary-container hover:bg-surface-container-high transition-colors font-body-md text-body-md">AB-</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="blood_type" type="radio" value="O+"/>
+<div class="bg-surface border border-outline-variant rounded-lg p-3 text-center peer-checked:bg-primary-fixed-dim peer-checked:border-primary peer-checked:text-on-primary-fixed hover:bg-surface-container-high transition-colors font-body-md text-body-md">O+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="blood_type" type="radio" value="O-"/>
+<div class="bg-surface border border-outline-variant rounded-lg p-3 text-center peer-checked:bg-primary-fixed-dim peer-checked:border-primary peer-checked:text-on-primary-fixed hover:bg-surface-container-high transition-colors font-body-md text-body-md">O-</div>
+</label>
+</div>
+</div>
+<div class="h-px bg-outline-variant w-full my-2"></div>
+<!-- Contact Info -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface" for="phone">Phone Number</label>
+<div class="relative">
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors pl-10" id="phone" name="phone" placeholder="(555) 000-0000" required="" type="tel"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">phone</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface" for="address">Home Address</label>
+<div class="relative">
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors pl-10 mb-4" id="address" name="address" placeholder="123 Main St, Apt 4B" required="" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-[22px] -translate-y-1/2 text-on-surface-variant pointer-events-none">home</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="col-span-2 relative">
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" id="city" name="city" placeholder="City" required="" type="text"/>
+</div>
+<div class="relative">
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" id="state" name="state" placeholder="State" required="" type="text"/>
+</div>
+<div class="relative">
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors" id="zip" name="zip" placeholder="Zip Code" required="" type="text"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 mt-4 pt-4 border-t border-outline-variant">
+<button class="w-full md:w-auto px-6 py-3 border border-secondary text-secondary rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button">
+                        Back
+                    </button>
+<button class="w-full md:w-auto px-6 py-3 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md hover:bg-primary transition-colors flex items-center justify-center gap-2" type="submit">
+                        Continue to Health Check
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</main>
+</body></html>

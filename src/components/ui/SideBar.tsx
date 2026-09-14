@@ -1,25 +1,26 @@
 import { useState } from "react"
 import { Widget } from "./Card"
-import {
-  LogOut,
-  Menu,
-  X,
-} from "lucide-react"
-import { navItems } from "@/utils/object"
+import { HeartPulse, LogOut, Menu, X } from "lucide-react"
+import { navItems, roleNavItems, type AppRole } from "@/utils/object"
 import { useNavigate } from "react-router-dom"
+import { authService } from "@/api/authServices"
 
 type LoginInfo = {
   Donneur?: string
   Role?: string
-  lieu?:string
+  lieu?: string
+  role?: AppRole
 }
 
-
-function SideBar({ Donneur = "Default", Role = "Default",lieu="Tableau de bord" }: LoginInfo) {
+function SideBar({
+  Donneur = "Default",
+  Role = "Default",
+  lieu = "Tableau de bord",
+  role = "donneur",
+}: LoginInfo) {
   const [activeItem, setActiveItem] = useState(lieu)
   const [isOpen, setIsOpen] = useState(false)
-  const navigate=useNavigate();
-
+  const navigate = useNavigate()
 
   return (
     <>
@@ -27,9 +28,9 @@ function SideBar({ Donneur = "Default", Role = "Default",lieu="Tableau de bord" 
         type="button"
         aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
         onClick={() => setIsOpen((prev) => !prev)}
-        className={` sticky ${!isOpen ? "left-4 ":"translate-x-50 "}  top-4 z-50 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-slate-900/80 text-white shadow-lg backdrop-blur-sm transition duration-300 hover:bg-slate-800 md:hidden`}
+        className={` sticky ${!isOpen ? "left-4 " : "translate-x-50 "}  top-4 z-50 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-slate-900/80 text-white shadow-lg backdrop-blur-sm transition duration-300 hover:bg-slate-800 md:hidden`}
       >
-        {isOpen ? <X className="h-5 w-5"  /> : <Menu className="h-5 w-5" />}
+        {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
       </button>
 
       {isOpen && (
@@ -38,7 +39,8 @@ function SideBar({ Donneur = "Default", Role = "Default",lieu="Tableau de bord" 
           aria-label="Fermer le menu"
           onClick={() => {
             console.log("1")
-            setIsOpen(false)}}
+            setIsOpen(false)
+          }}
           className="fixed inset-0 z-30 bg-slate-950/45 md:hidden"
         />
       )}
@@ -50,7 +52,7 @@ function SideBar({ Donneur = "Default", Role = "Default",lieu="Tableau de bord" 
       >
         <header className="flex items-center gap-3 border-b border-white/10 px-4 py-5">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-linear-to-br from-red-500 to-red-700 text-sm font-black tracking-wide text-white shadow-lg shadow-red-900/40 ring-4 ring-white/5 transition-transform duration-200 hover:scale-105 cursor-pointer">
-            MGB
+            <HeartPulse className="h-6 w-6" aria-hidden="true" />
           </div>
 
           <div className="min-w-0">
@@ -68,7 +70,7 @@ function SideBar({ Donneur = "Default", Role = "Default",lieu="Tableau de bord" 
             Navigation
           </p>
 
-          {navItems.map(({ title, icon,lien }) => {
+          {(roleNavItems[role] ?? navItems).map(({ title, icon, lien }) => {
             const isActive = activeItem === title
 
             return (
@@ -100,8 +102,9 @@ function SideBar({ Donneur = "Default", Role = "Default",lieu="Tableau de bord" 
             logo={LogOut}
             title="Déconnexion"
             onClick={() => {
-                  navigate("/")   
-                }}
+              authService.logout()
+              navigate("/")
+            }}
             className="w-full justify-start gap-3 rounded-xl border border-red-400/30 bg-linear-to-r from-red-500 to-red-700 px-3 text-left text-white shadow-lg shadow-red-900/30 hover:from-red-400 hover:to-red-600"
           />
         </div>

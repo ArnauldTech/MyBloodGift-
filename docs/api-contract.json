@@ -1,0 +1,168 @@
+{
+  "version": "1.0.0",
+  "description": "Contrat de données de référence pour l'API FastAPI MyBloodGift.",
+  "auth": {
+    "login": {
+      "method": "POST",
+      "path": "/Authentification/login",
+      "body": { "email": "sophie@example.com", "password": "ChangeMe123!" },
+      "response": {
+        "message": "Connexion réussie",
+        "user": "Sophie Martin",
+        "role": "Donneur",
+        "access_token": "jwt-token"
+      }
+    },
+    "signup": {
+      "method": "POST",
+      "path": "/Authentification/signup",
+      "body": {
+        "nom": "Sophie Martin",
+        "email": "sophie@example.com",
+        "password": "ChangeMe123!",
+        "role": "Donneur"
+      }
+    }
+  },
+  "resources": {
+    "demandes": {
+      "list": {
+        "method": "GET",
+        "path": "/demandes",
+        "query": ["blood_group", "city", "status", "page", "page_size"]
+      },
+      "create": {
+        "method": "POST",
+        "path": "/demandes",
+        "body": {
+          "establishment": "Hôpital Ibn Sina",
+          "blood_group": "O-",
+          "units": 4,
+          "city": "Rabat",
+          "deadline": "2026-09-15",
+          "notes": "Urgence bloc opératoire"
+        }
+      },
+      "response": {
+        "id": 2048,
+        "establishment": "Hôpital Ibn Sina",
+        "blood_group": "O-",
+        "units": 4,
+        "city": "Rabat",
+        "status": "pending",
+        "deadline": "2026-09-15"
+      }
+    },
+    "stocks": {
+      "list": {
+        "method": "GET",
+        "path": "/stocks",
+        "query": ["blood_group", "status", "expires_before", "page", "page_size"]
+      },
+      "create": {
+        "method": "POST",
+        "path": "/stocks",
+        "body": {
+          "blood_group": "O+",
+          "units": 24,
+          "expires_at": "2026-10-20",
+          "status": "available"
+        }
+      },
+      "update": {
+        "method": "PATCH",
+        "path": "/stocks/{id}",
+        "body": { "units": 18, "expires_at": "2026-10-20" }
+      },
+      "delete": { "method": "DELETE", "path": "/stocks/{id}" }
+    },
+    "centres": {
+      "list": {
+        "method": "GET",
+        "path": "/centres",
+        "query": ["latitude", "longitude", "radius_km"]
+      },
+      "response": [
+        {
+          "id": 1,
+          "name": "Centre Ibn Sina",
+          "address": "Rabat",
+          "latitude": 34.0209,
+          "longitude": -6.8416,
+          "available": true
+        }
+      ]
+    },
+    "rendez-vous": {
+      "create": {
+        "method": "POST",
+        "path": "/rendez-vous",
+        "body": { "center_id": 1, "scheduled_at": "2026-09-20T10:30:00" }
+      }
+    }
+  },
+  "enums": {
+    "blood_group": ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"],
+    "request_status": ["pending", "matched", "fulfilled", "cancelled"],
+    "stock_status": ["available", "reserved", "expired"],
+    "roles": ["Donneur", "Demandeur", "hospital", "admin"]
+  },
+  "seed": {
+    "centres": [
+      {
+        "id": 1,
+        "name": "Centre Ibn Sina",
+        "address": "Avenue des Hôpitaux, Rabat",
+        "latitude": 34.0209,
+        "longitude": -6.8416,
+        "available": true
+      },
+      {
+        "id": 2,
+        "name": "Centre de transfusion Rabat",
+        "address": "Agdal, Rabat",
+        "latitude": 34.0068,
+        "longitude": -6.8498,
+        "available": true
+      },
+      {
+        "id": 3,
+        "name": "Unité mobile Hay Riad",
+        "address": "Hay Riad, Rabat",
+        "latitude": 33.9735,
+        "longitude": -6.8667,
+        "available": false
+      }
+    ],
+    "stocks": [
+      {
+        "id": 1,
+        "blood_group": "O+",
+        "units": 68,
+        "expires_at": "2026-10-20",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "blood_group": "O-",
+        "units": 12,
+        "expires_at": "2026-09-10",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "blood_group": "A+",
+        "units": 45,
+        "expires_at": "2026-10-05",
+        "status": "available"
+      },
+      {
+        "id": 4,
+        "blood_group": "B+",
+        "units": 27,
+        "expires_at": "2026-11-02",
+        "status": "available"
+      }
+    ]
+  }
+}

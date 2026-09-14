@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hospital Management Dashboard | My BloodGift</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#930010",
+                        "inverse-surface": "#263238",
+                        "on-surface": "#111d23",
+                        "on-background": "#111d23",
+                        "on-secondary-fixed-variant": "#004786",
+                        "tertiary-container": "#298030",
+                        "on-tertiary-container": "#daffd1",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f4faff",
+                        "outline": "#8f6f6c",
+                        "tertiary-fixed-dim": "#82db7e",
+                        "tertiary": "#016619",
+                        "surface-dim": "#cfdce4",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#410003",
+                        "surface-container-low": "#e9f6fd",
+                        "primary-fixed": "#ffdad6",
+                        "secondary-fixed-dim": "#a5c8ff",
+                        "inverse-primary": "#ffb3ac",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#d7e4ec",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#ddeaf2",
+                        "background": "#f4faff",
+                        "on-primary-container": "#fff2f0",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#003567",
+                        "primary-fixed-dim": "#ffb3ac",
+                        "surface-tint": "#ba1a20",
+                        "tertiary-fixed": "#9df898",
+                        "outline-variant": "#e4beba",
+                        "primary": "#af101a",
+                        "surface-container-highest": "#d7e4ec",
+                        "on-surface-variant": "#5b403d",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#005faf",
+                        "secondary-fixed": "#d4e3ff",
+                        "surface": "#f4faff",
+                        "secondary-container": "#54a0fe",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#e6f3fb",
+                        "on-secondary-fixed": "#001c3a",
+                        "primary-container": "#d32f2f",
+                        "surface-container": "#e3f0f8",
+                        "on-tertiary-fixed": "#002204",
+                        "on-tertiary-fixed-variant": "#005312"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-mobile": "16px",
+                        "container-max-width": "1280px",
+                        "gutter": "24px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav class="bg-surface-container dark:bg-surface-container-lowest h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline flat no shadows transition-all duration-200 ease-in-out flex flex-col py-unit px-unit z-20 md:flex hidden">
+<!-- Header -->
+<div class="px-4 py-6 border-b border-outline-variant/30 mb-4 flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-surface-container-highest mb-3 flex items-center justify-center overflow-hidden border-2 border-primary-container/20">
+<img class="w-full h-full object-cover" data-alt="A highly detailed vector illustration of a modern clinical cross logo mixed with a subtle blood drop motif. The style is flat, precise, and professional, using a clinical color palette of deep reds and pristine whites, creating a trustworthy corporate identity suitable for a hospital management system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfHaZBf3sY80PhmhC1t0ef5Ts58-Z03H2ctsSaZ5ls2qgDoZmEVjHkvcPwEkqnJb1icun4rurCyOxKRkTOtogNCAApIlpeXW7QfzfH2Su1d6W2vV6Rll6USyNqO7NdbStBC0qp4mPrIzOxjxIRoUrAEi1aOesunv6546lBfgG7A_ZNd22WP_AfT0VPArUoJuC4bNJcBXuLO8mzszQUg4amkobeLZLiRblhUkgMKi8h3oIWqJwh5l7Ixg"/>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-black text-primary dark:text-primary-fixed-dim text-center">My BloodGift</h1>
+<h2 class="font-label-md text-label-md text-secondary mt-1">Management Console</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1 text-center">Role-Based Access</p>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-1">
+<!-- Dashboard (Active) -->
+<li>
+<a class="flex items-center px-4 py-3 rounded-lg text-secondary font-bold bg-secondary-container/10 border-r-4 border-secondary transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3 filled-icon" data-icon="dashboard">dashboard</span>
+                        Dashboard
+                    </a>
+</li>
+<!-- Donations -->
+<li>
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 dark:hover:bg-inverse-surface transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="bloodtype">bloodtype</span>
+                        Donations
+                    </a>
+</li>
+<!-- Requests -->
+<li>
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 dark:hover:bg-inverse-surface transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="emergency_share">emergency_share</span>
+                        Requests
+                    </a>
+</li>
+<!-- Inventory -->
+<li>
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 dark:hover:bg-inverse-surface transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="inventory_2">inventory_2</span>
+                        Inventory
+                    </a>
+</li>
+<!-- Users -->
+<li>
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 dark:hover:bg-inverse-surface transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="group">group</span>
+                        Users
+                    </a>
+</li>
+<!-- Reports -->
+<li>
+<a class="flex items-center px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 dark:hover:bg-inverse-surface transition-all duration-200 ease-in-out font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="analytics">analytics</span>
+                        Reports
+                    </a>
+</li>
+</ul>
+</div>
+<!-- CTA & Footer -->
+<div class="mt-auto pt-4 border-t border-outline-variant/30">
+<button class="w-full mb-4 bg-primary-container text-on-primary text-label-md font-label-md py-3 px-4 rounded-lg flex items-center justify-center hover:bg-primary transition-colors duration-200 shadow-sm">
+<span class="material-symbols-outlined mr-2 text-[20px]" data-icon="add_alert">add_alert</span>
+                New Urgent Request
+            </button>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-all duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="settings">settings</span>
+                        Settings
+                    </a>
+</li>
+<li>
+<a class="flex items-center px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 transition-all duration-200 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="logout">logout</span>
+                        Logout
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 relative w-full h-full">
+<!-- TopNavBar (Mobile mainly, but structured as requested) -->
+<header class="bg-surface dark:bg-inverse-surface w-full top-0 sticky border-b border-outline-variant dark:border-outline flat no shadows z-10 md:hidden flex justify-between items-center px-margin-mobile py-unit">
+<div class="flex items-center">
+<button class="mr-4 text-primary p-1 cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">My BloodGift</span>
+</div>
+<div class="flex items-center space-x-2">
+<button class="text-on-surface-variant p-2 hover:bg-surface-container-low rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant p-2 hover:bg-surface-container-low rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant ml-2 overflow-hidden border border-outline-variant cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a healthcare administrator wearing a white coat, looking confident and composed in a brightly lit, modern clinical environment. The lighting is soft and flattering, emphasizing a trustworthy and caring demeanor suitable for a medical dashboard profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQmOdXm9jmj0X9wwY-DXr_eAb0u-YP6NZOwJAPFy6t_wT8GWIiS6Gw7l2_itok-DKXLG0iOuBWm9gJEEdjAf9H2FtbTFjdptcqgkNS8Gw3bATc0TYgka2170Vkd5oyApid1eMexuEKRD31tTYfKKE6htaFzil5Sf6JjVUoGljXM32MjCmeRAEPXs9-RKC4iSCFdlqEd17KynO0Ngy0t4IyhiPF_J41qRxJun1p0nPFN9BVffK5ZPJFfg"/>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Area -->
+<main class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop bg-surface-bright">
+<div class="max-w-container-max-width mx-auto space-y-8">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Dashboard Overview</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Real-time clinical metrics and coordination.</p>
+</div>
+<!-- Search Bar -->
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent font-body-md text-body-md text-on-surface placeholder-on-surface-variant/60 shadow-sm transition-all" placeholder="Search compatible donors in area..." type="text"/>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Blood Stock Inventory (Spans 8 cols) -->
+<div class="md:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center">
+<span class="material-symbols-outlined text-primary mr-2" data-icon="water_drop">water_drop</span>
+                                Live Blood Stock Inventory
+                            </h3>
+<button class="text-secondary font-label-md text-label-md hover:bg-secondary/10 px-3 py-1 rounded transition-colors flex items-center">
+                                View Detailed Analytics <span class="material-symbols-outlined text-[16px] ml-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Visual Bar Charts (Simulated) -->
+<div class="flex-1 flex flex-col justify-center space-y-5">
+<!-- O+ -->
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-2"><span class="w-8 h-6 bg-surface-container flex items-center justify-center rounded text-secondary font-bold text-xs">O+</span> Optimal</span>
+<span class="font-label-sm text-label-sm text-on-surface">1,240 Units / 85%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2">
+<div class="bg-secondary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<!-- A+ -->
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-2"><span class="w-8 h-6 bg-surface-container flex items-center justify-center rounded text-secondary font-bold text-xs">A+</span> Stable</span>
+<span class="font-label-sm text-label-sm text-on-surface">950 Units / 60%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2">
+<div class="bg-secondary-container h-2 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<!-- B- -->
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-2"><span class="w-8 h-6 bg-error-container flex items-center justify-center rounded text-primary font-bold text-xs">B-</span> Critical Low</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">120 Units / 15%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 15%"></div>
+</div>
+</div>
+<!-- O- -->
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-2"><span class="w-8 h-6 bg-error-container flex items-center justify-center rounded text-primary font-bold text-xs">O-</span> Urgent Restock</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">85 Units / 10%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2">
+<div class="bg-primary-container h-2 rounded-full" style="width: 10%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Emergency Requests Queue (Spans 4 cols) -->
+<div class="md:col-span-4 bg-error-container/20 border border-error-container rounded-xl p-6 flex flex-col relative overflow-hidden">
+<!-- Subtle Background Accent -->
+<div class="absolute top-0 right-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-[120px] text-primary" data-icon="medical_services">medical_services</span>
+</div>
+<div class="flex justify-between items-center mb-4 relative z-10">
+<h3 class="font-headline-md text-headline-md text-primary flex items-center">
+<span class="material-symbols-outlined mr-2" data-icon="emergency">emergency</span>
+                                Active Emergencies
+                            </h3>
+<span class="bg-primary text-on-primary font-label-sm text-label-sm px-2 py-1 rounded-full">3 Critical</span>
+</div>
+<div class="flex-1 space-y-3 relative z-10 overflow-y-auto pr-1">
+<!-- Emergency Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:border-primary/50 transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-on-surface font-bold">ER - Trauma Bay 2</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center"><span class="material-symbols-outlined text-[14px] mr-1" data-icon="timer">timer</span> 5m ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-2">Massive hemorrhage protocol activated. Req. immediately.</p>
+<div class="flex justify-between items-center">
+<span class="bg-error-container text-primary font-bold text-xs px-2 py-1 rounded">O- Negative (4 Units)</span>
+<button class="text-secondary font-label-sm text-label-sm hover:underline">Dispatch</button>
+</div>
+</div>
+<!-- Emergency Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-3 shadow-sm hover:border-primary/50 transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-on-surface font-bold">Surgery - OR 4</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center"><span class="material-symbols-outlined text-[14px] mr-1" data-icon="timer">timer</span> 12m ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-2">Complex cardiovascular procedure. Standby units needed.</p>
+<div class="flex justify-between items-center">
+<span class="bg-error-container text-primary font-bold text-xs px-2 py-1 rounded">A+ Positive (2 Units)</span>
+<button class="text-secondary font-label-sm text-label-sm hover:underline">Review</button>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 bg-transparent border border-primary text-primary font-label-md text-label-md py-2 rounded-lg hover:bg-primary/5 transition-colors">
+                            View All Requests
+                        </button>
+</div>
+<!-- Pending Donor Validations (Spans 12 cols, below) -->
+<div class="md:col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center">
+<span class="material-symbols-outlined text-secondary mr-2" data-icon="fact_check">fact_check</span>
+                                Pending Donor Validations
+                            </h3>
+<div class="flex gap-2">
+<button class="border border-outline-variant text-on-surface-variant px-3 py-1 rounded text-sm font-medium hover:bg-surface-container-low transition-colors flex items-center">
+<span class="material-symbols-outlined text-[16px] mr-1" data-icon="filter_list">filter_list</span> Filter
+                                </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant">
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Donor ID</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Name</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Blood Type</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Collection Date</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="py-3 px-4 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody>
+<!-- Row 1 -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface">#D-88921</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface font-medium">Sarah Jenkins</td>
+<td class="py-4 px-4">
+<span class="bg-surface-container text-secondary font-bold text-xs px-2 py-1 rounded">B+</span>
+</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface-variant">Today, 08:30 AM</td>
+<td class="py-4 px-4">
+<span class="flex items-center text-secondary text-sm font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary mr-2"></span> Lab Processing
+                                            </span>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="text-secondary hover:text-secondary-container transition-colors p-1">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface">#D-88922</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface font-medium">Marcus Torres</td>
+<td class="py-4 px-4">
+<span class="bg-error-container text-primary font-bold text-xs px-2 py-1 rounded">O-</span>
+</td>
+<td class="py-4 px-4 font-body-md text-body-md text-on-surface-variant">Today, 09:15 AM</td>
+<td class="py-4 px-4">
+<span class="flex items-center text-tertiary text-sm font-medium">
+<span class="w-2 h-2 rounded-full bg-tertiary mr-2"></span> Awaiting Sign-off
+                                            </span>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="bg-secondary text-on-secondary px-3 py-1 rounded text-sm font-medium hover:bg-secondary-container transition-colors">
+                                                Validate
+                                            </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-12 bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant dark:border-outline flat no shadows flex flex-col md:flex-row justify-between items-center px-margin-desktop py-gutter w-full max-w-container-max-width mx-auto rounded-xl">
+<div class="mb-4 md:mb-0 text-center md:text-left">
+<span class="font-label-md text-label-md font-bold text-on-surface block mb-1">My BloodGift</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant">© 2024 My BloodGift. All rights reserved. Precise Blood Management Systems.</span>
+</div>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Legal</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Contact Support</a>
+<a class="font-label-sm text-label-sm text-primary font-bold hover:underline transition-colors cursor-pointer" href="#">Emergency Hotline</a>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

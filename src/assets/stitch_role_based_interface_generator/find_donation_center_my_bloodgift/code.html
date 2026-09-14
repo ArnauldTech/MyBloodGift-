@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Find Centers - My BloodGift</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#54a0fe",
+                        "on-error": "#ffffff",
+                        "on-background": "#111d23",
+                        "on-tertiary-container": "#daffd1",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#e3f0f8",
+                        "primary-fixed": "#ffdad6",
+                        "on-secondary-fixed": "#001c3a",
+                        "inverse-surface": "#263238",
+                        "secondary": "#005faf",
+                        "secondary-fixed": "#d4e3ff",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#ffb3ac",
+                        "on-surface": "#111d23",
+                        "surface-container-highest": "#d7e4ec",
+                        "inverse-on-surface": "#e6f3fb",
+                        "on-primary-fixed": "#410003",
+                        "tertiary": "#016619",
+                        "surface": "#f4faff",
+                        "on-surface-variant": "#5b403d",
+                        "outline": "#8f6f6c",
+                        "surface-bright": "#f4faff",
+                        "primary-fixed-dim": "#ffb3ac",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#fff2f0",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#002204",
+                        "surface-container-low": "#e9f6fd",
+                        "on-secondary-fixed-variant": "#004786",
+                        "tertiary-container": "#298030",
+                        "surface-container-high": "#ddeaf2",
+                        "surface-variant": "#d7e4ec",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#82db7e",
+                        "primary": "#af101a",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#e4beba",
+                        "on-secondary-container": "#003567",
+                        "tertiary-fixed": "#9df898",
+                        "primary-container": "#d32f2f",
+                        "background": "#f4faff",
+                        "secondary-fixed-dim": "#a5c8ff",
+                        "surface-dim": "#cfdce4",
+                        "surface-tint": "#ba1a20",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-primary-fixed-variant": "#930010"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max-width": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md h-screen flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-margin-desktop bg-surface dark:bg-background h-16 border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-8">
+<h1 class="font-headline-md text-headline-md-mobile md:text-headline-md font-bold text-primary dark:text-primary-fixed-dim">
+                My BloodGift
+            </h1>
+<nav class="hidden md:flex gap-6 h-full items-center">
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary font-bold pb-1 hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">
+                    Find Centers
+                </a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">
+                    My Donations
+                </a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">
+                    Seek Blood
+                </a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center justify-center bg-primary-container text-on-primary-container font-label-md text-label-md px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
+                Emergency Request
+            </button>
+<div class="flex gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area (Layout: Sidebar + Map) -->
+<main class="flex-1 flex mt-16 overflow-hidden h-[calc(100vh-64px)]">
+<!-- Sidebar - Center List & Filters -->
+<aside class="w-full md:w-[400px] lg:w-[450px] bg-surface flex flex-col border-r border-outline-variant shrink-0 z-10 shadow-lg md:shadow-none h-full overflow-hidden">
+<!-- Search & Filters Header -->
+<div class="p-4 border-b border-outline-variant bg-surface-container-low shrink-0">
+<h2 class="font-headline-md text-headline-md-mobile md:text-headline-md mb-4">Find Centers</h2>
+<div class="relative mb-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-lg border border-outline-variant bg-surface focus:ring-2 focus:ring-secondary focus:border-secondary outline-none transition-shadow font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant" placeholder="Search by Zip or City" type="text"/>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-full border border-outline-variant bg-surface text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-variant transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">filter_list</span> Filters
+                    </button>
+<button class="px-3 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-medium transition-colors">
+                        Whole Blood
+                    </button>
+<button class="px-3 py-1.5 rounded-full border border-outline-variant bg-surface text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-variant transition-colors">
+                        Platelets
+                    </button>
+<button class="px-3 py-1.5 rounded-full border border-outline-variant bg-surface text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-variant transition-colors">
+                        &lt; 5 Miles
+                    </button>
+</div>
+</div>
+<!-- List of Centers -->
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Center Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label-md text-label-md font-bold text-on-surface group-hover:text-secondary transition-colors">Central City Blood Center</h3>
+<span class="bg-tertiary-container/20 text-tertiary font-label-sm text-label-sm px-2 py-0.5 rounded-sm">Open Now</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-3">123 Health Ave, Suite 100<br/>0.8 miles away</p>
+<div class="flex gap-2 mb-4">
+<span class="bg-surface-variant text-on-surface-variant font-label-sm text-label-sm px-2 py-1 rounded-sm">Whole Blood</span>
+<span class="bg-surface-variant text-on-surface-variant font-label-sm text-label-sm px-2 py-1 rounded-sm">Platelets</span>
+<span class="bg-surface-variant text-on-surface-variant font-label-sm text-label-sm px-2 py-1 rounded-sm flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">directions_walk</span> Walk-ins</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-2 rounded-lg hover:bg-primary/90 transition-colors">Schedule</button>
+<button class="w-10 flex items-center justify-center border border-outline-variant rounded-lg text-secondary hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">directions</span>
+</button>
+</div>
+</div>
+<!-- Center Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label-md text-label-md font-bold text-on-surface group-hover:text-secondary transition-colors">Northside Community Hospital</h3>
+<span class="bg-surface-variant text-on-surface-variant font-label-sm text-label-sm px-2 py-0.5 rounded-sm">Closes 5PM</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-3">456 Care Blvd, North Wing<br/>2.4 miles away</p>
+<div class="flex gap-2 mb-4">
+<span class="bg-surface-variant text-on-surface-variant font-label-sm text-label-sm px-2 py-1 rounded-sm">Whole Blood</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 border border-secondary text-secondary font-label-md text-label-md py-2 rounded-lg hover:bg-surface-variant transition-colors">Schedule</button>
+<button class="w-10 flex items-center justify-center border border-outline-variant rounded-lg text-secondary hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">directions</span>
+</button>
+</div>
+</div>
+<!-- Center Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 hover:border-secondary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label-md text-label-md font-bold text-on-surface group-hover:text-secondary transition-colors">Mobile Drive: City Plaza</h3>
+<span class="bg-tertiary-container/20 text-tertiary font-label-sm text-label-sm px-2 py-0.5 rounded-sm">Open Now</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mb-3">789 Main St, Plaza Square<br/>3.1 miles away</p>
+<div class="flex gap-2 mb-4">
+<span class="bg-surface-variant text-on-surface-variant font-label-sm text-label-sm px-2 py-1 rounded-sm">Whole Blood</span>
+<span class="bg-surface-variant text-on-surface-variant font-label-sm text-label-sm px-2 py-1 rounded-sm flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">directions_walk</span> Walk-ins</span>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-2 rounded-lg hover:bg-primary/90 transition-colors">Schedule</button>
+<button class="w-10 flex items-center justify-center border border-outline-variant rounded-lg text-secondary hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">directions</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Map Area -->
+<div class="flex-1 relative bg-surface-dim hidden md:block h-full">
+<!-- Simulated Map Background -->
+<img class="w-full h-full object-cover" data-alt="A detailed map interface showing the streets of a modern city in a light mode aesthetic. The map features subtle topographical lines, soft grays and light blues indicating water features, and clear street grids. Several prominent red location markers (pins) with white crosses inside are scattered across the map indicating blood donation centers. The lighting is soft and clinical, conveying a sense of reliability and clarity." data-location="New York City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz9SGtUom6g2JiqHCoP3QaX9xnnj2rDAPDCxfUVQNzQjXNYI73aYnl_l5SjYOU4tQ2Rsqz7W0a7f9CUccLoXRiS6hLrH0XddHgnxq6LOsM8NBQJw1i9m9G6x1Ui-UugS2V5B_sV-zv7RzM1lwlS0l7LbK8h-KFrUpwDY9bfaLVCQ2pV4Wdlw79DXSTcx0C2ijtyJyZj7rnIsvc8y4Ws9A54kpKjWYKEctzhH25rZvB5Xqu13e5-5Va6Q"/>
+<!-- Map Overlay Controls -->
+<div class="absolute bottom-6 right-6 flex flex-col gap-2">
+<button class="w-12 h-12 bg-surface-container-lowest rounded-full shadow-lg border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<div class="flex flex-col bg-surface-container-lowest rounded-lg shadow-lg border border-outline-variant overflow-hidden">
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors border-b border-outline-variant">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+</div>
+<!-- Example Map Pin Overlay -->
+<div class="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="bg-surface-container-lowest p-3 rounded-lg shadow-xl border border-outline-variant mb-2 min-w-[150px] animate-pulse">
+<h4 class="font-label-md text-label-md font-bold text-on-surface">Central City Center</h4>
+<p class="text-xs text-tertiary font-medium">Open • 0.8 mi</p>
+</div>
+<div class="w-8 h-8 bg-primary rounded-full border-2 border-white shadow-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[18px]">water_drop</span>
+</div>
+</div>
+<!-- Inactive Pin -->
+<div class="absolute top-[20%] left-[30%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center opacity-70">
+<div class="w-6 h-6 bg-primary rounded-full border-2 border-white shadow-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[14px]">water_drop</span>
+</div>
+</div>
+</div>
+</main>
+</body></html>
