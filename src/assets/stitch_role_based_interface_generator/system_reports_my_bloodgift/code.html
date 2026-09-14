@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Reports - My BloodGift Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#54a0fe",
+                        "on-error": "#ffffff",
+                        "on-background": "#111d23",
+                        "on-tertiary-container": "#daffd1",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#e3f0f8",
+                        "primary-fixed": "#ffdad6",
+                        "on-secondary-fixed": "#001c3a",
+                        "inverse-surface": "#263238",
+                        "secondary": "#005faf",
+                        "secondary-fixed": "#d4e3ff",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#ffb3ac",
+                        "on-surface": "#111d23",
+                        "surface-container-highest": "#d7e4ec",
+                        "inverse-on-surface": "#e6f3fb",
+                        "on-primary-fixed": "#410003",
+                        "tertiary": "#016619",
+                        "surface": "#f4faff",
+                        "on-surface-variant": "#5b403d",
+                        "outline": "#8f6f6c",
+                        "surface-bright": "#f4faff",
+                        "primary-fixed-dim": "#ffb3ac",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#fff2f0",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#002204",
+                        "surface-container-low": "#e9f6fd",
+                        "on-secondary-fixed-variant": "#004786",
+                        "tertiary-container": "#298030",
+                        "surface-container-high": "#ddeaf2",
+                        "surface-variant": "#d7e4ec",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#82db7e",
+                        "primary": "#af101a",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#e4beba",
+                        "on-secondary-container": "#003567",
+                        "tertiary-fixed": "#9df898",
+                        "primary-container": "#d32f2f",
+                        "background": "#f4faff",
+                        "secondary-fixed-dim": "#a5c8ff",
+                        "surface-dim": "#cfdce4",
+                        "surface-tint": "#ba1a20",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-primary-fixed-variant": "#930010"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max-width": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill-1 {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Simple bar chart styles for demo */
+        .bar-container { display: flex; align-items: flex-end; height: 200px; gap: 12px; }
+        .bar { width: 100%; border-radius: 4px 4px 0 0; background-color: #005faf; transition: height 0.5s ease; }
+        .bar-label { text-align: center; margin-top: 8px; font-size: 12px; color: #5b403d; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full w-64 flex-col z-40 py-6 bg-surface-container-low border-r border-outline-variant">
+<div class="px-6 mb-8 flex flex-col items-center">
+<!-- Avatar / Header -->
+<div class="w-20 h-20 rounded-full bg-secondary-container flex items-center justify-center mb-4 text-on-secondary-container overflow-hidden">
+<span class="material-symbols-outlined text-4xl">local_hospital</span>
+</div>
+<div class="text-center">
+<h2 class="font-headline-md text-headline-md font-extrabold text-primary">Hospital Portal</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Central General Hospital</p>
+</div>
+</div>
+<button class="mx-6 mb-6 py-3 bg-primary-container text-on-primary font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
+<span class="material-symbols-outlined">add</span>
+            Add Stock
+        </button>
+<div class="flex-1 overflow-y-auto px-2 space-y-1">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">bloodtype</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+                Donor Validation
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">e911_emergency</span>
+                Requests
+            </a>
+<!-- Active State -->
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container rounded-lg px-4 py-3 mx-2 scale-95 duration-200 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined icon-fill-1">analytics</span>
+                Reports
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+<div class="px-2 mt-auto pt-4 border-t border-outline-variant space-y-1">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">help</span>
+                Help Center
+            </a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 h-full overflow-y-auto bg-background p-margin-mobile md:p-margin-desktop">
+<!-- Header -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-background">System Reports</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Analytics and data exports for system-wide operations.</p>
+</div>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 border border-secondary text-secondary rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                    Export CSV
+                </button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 border border-secondary text-secondary rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                    Export PDF
+                </button>
+</div>
+</header>
+<!-- Analytics Grid (Bento style) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-8">
+<!-- Donations Over Time (Bar Chart) -->
+<div class="md:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Donations Over Time</h3>
+<select class="bg-surface border border-outline-variant text-on-surface rounded-lg px-3 py-1 font-label-sm text-label-sm focus:ring-secondary focus:border-secondary">
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+<option>This Year</option>
+</select>
+</div>
+<div class="bar-container mt-4">
+<div class="flex flex-col w-full">
+<div class="bar" style="height: 40%;"></div>
+<div class="bar-label">Mon</div>
+</div>
+<div class="flex flex-col w-full">
+<div class="bar bg-primary" style="height: 75%;"></div>
+<div class="bar-label">Tue</div>
+</div>
+<div class="flex flex-col w-full">
+<div class="bar" style="height: 50%;"></div>
+<div class="bar-label">Wed</div>
+</div>
+<div class="flex flex-col w-full">
+<div class="bar" style="height: 90%;"></div>
+<div class="bar-label">Thu</div>
+</div>
+<div class="flex flex-col w-full">
+<div class="bar" style="height: 60%;"></div>
+<div class="bar-label">Fri</div>
+</div>
+<div class="flex flex-col w-full">
+<div class="bar" style="height: 30%;"></div>
+<div class="bar-label">Sat</div>
+</div>
+<div class="flex flex-col w-full">
+<div class="bar" style="height: 45%;"></div>
+<div class="bar-label">Sun</div>
+</div>
+</div>
+</div>
+<!-- Blood Type Distribution (Simplified Pie Chart visually) -->
+<div class="md:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-[0_4px_12px_rgba(0,0,0,0.02)] flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">Blood Type Distribution</h3>
+<!-- Simulated Donut Chart -->
+<div class="relative w-40 h-40 mx-auto my-4">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<!-- Background Circle -->
+<path class="text-surface-container-highest" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="6"></path>
+<!-- Segments (Simulated) -->
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="40, 100" stroke-width="6"></path>
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="25, 100" stroke-dashoffset="-40" stroke-width="6"></path>
+<path class="text-tertiary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="20, 100" stroke-dashoffset="-65" stroke-width="6"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-surface">Total</span>
+<span class="font-label-md text-label-md text-on-surface-variant">1,204</span>
+</div>
+</div>
+<div class="mt-auto space-y-3">
+<div class="flex justify-between items-center font-label-md text-label-md">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-on-surface">O+ (Urgent)</span>
+</div>
+<span class="text-on-surface-variant font-semibold">40%</span>
+</div>
+<div class="flex justify-between items-center font-label-md text-label-md">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="text-on-surface">A+</span>
+</div>
+<span class="text-on-surface-variant font-semibold">25%</span>
+</div>
+<div class="flex justify-between items-center font-label-md text-label-md">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-tertiary"></div>
+<span class="text-on-surface">B+</span>
+</div>
+<span class="text-on-surface-variant font-semibold">20%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity Log Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.02)] mb-8">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">System Activity Logs</h3>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="pl-9 pr-4 py-2 bg-surface border border-outline-variant rounded-lg text-label-md font-label-md focus:ring-secondary focus:border-secondary w-full md:w-64" placeholder="Search logs..." type="text"/>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-md text-label-md">
+<th class="p-4 font-medium">Timestamp</th>
+<th class="p-4 font-medium">Action</th>
+<th class="p-4 font-medium">User / Role</th>
+<th class="p-4 font-medium">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant font-body-md text-body-md text-on-surface">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 text-on-surface-variant">2023-10-27 14:32:01</td>
+<td class="p-4">Stock Updated: Added 50 units O-</td>
+<td class="p-4">Admin (John Doe)</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 bg-tertiary-container text-on-tertiary-container px-2 py-1 rounded font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Success
+                                </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 text-on-surface-variant">2023-10-27 13:15:44</td>
+<td class="p-4">Emergency Request: AB+ Needed</td>
+<td class="p-4">Dr. Sarah Smith (ER)</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 bg-error-container text-on-error-container px-2 py-1 rounded font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">warning</span> Pending
+                                </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 text-on-surface-variant">2023-10-27 11:05:12</td>
+<td class="p-4">Donor Validation Failed: Low Hemoglobin</td>
+<td class="p-4">Nurse Ratched</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 bg-surface-variant text-on-surface-variant px-2 py-1 rounded font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">info</span> Logged
+                                </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 text-on-surface-variant">2023-10-27 09:00:00</td>
+<td class="p-4">Daily Report Generated</td>
+<td class="p-4">System Auto</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1 bg-tertiary-container text-on-tertiary-container px-2 py-1 rounded font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Success
+                                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-outline-variant flex justify-center">
+<button class="text-secondary font-label-md text-label-md hover:underline">View All Logs</button>
+</div>
+</div>
+</main>
+</body></html>

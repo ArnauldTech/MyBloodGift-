@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My BloodGift - System Administrator Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#930010",
+                      "inverse-surface": "#263238",
+                      "on-surface": "#111d23",
+                      "on-background": "#111d23",
+                      "on-secondary-fixed-variant": "#004786",
+                      "tertiary-container": "#298030",
+                      "on-tertiary-container": "#daffd1",
+                      "on-error": "#ffffff",
+                      "surface-bright": "#f4faff",
+                      "outline": "#8f6f6c",
+                      "tertiary-fixed-dim": "#82db7e",
+                      "tertiary": "#016619",
+                      "surface-dim": "#cfdce4",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#410003",
+                      "surface-container-low": "#e9f6fd",
+                      "primary-fixed": "#ffdad6",
+                      "secondary-fixed-dim": "#a5c8ff",
+                      "inverse-primary": "#ffb3ac",
+                      "error-container": "#ffdad6",
+                      "surface-variant": "#d7e4ec",
+                      "on-primary": "#ffffff",
+                      "surface-container-high": "#ddeaf2",
+                      "background": "#f4faff",
+                      "on-primary-container": "#fff2f0",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#003567",
+                      "primary-fixed-dim": "#ffb3ac",
+                      "surface-tint": "#ba1a20",
+                      "tertiary-fixed": "#9df898",
+                      "outline-variant": "#e4beba",
+                      "primary": "#af101a",
+                      "surface-container-highest": "#d7e4ec",
+                      "on-surface-variant": "#5b403d",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary": "#005faf",
+                      "secondary-fixed": "#d4e3ff",
+                      "surface": "#f4faff",
+                      "secondary-container": "#54a0fe",
+                      "on-error-container": "#93000a",
+                      "on-tertiary": "#ffffff",
+                      "inverse-on-surface": "#e6f3fb",
+                      "on-secondary-fixed": "#001c3a",
+                      "primary-container": "#d32f2f",
+                      "surface-container": "#e3f0f8",
+                      "on-tertiary-fixed": "#002204",
+                      "on-tertiary-fixed-variant": "#005312"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "margin-mobile": "16px",
+                      "container-max-width": "1280px",
+                      "gutter": "24px",
+                      "margin-desktop": "32px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="bg-surface-container dark:bg-surface-container-lowest text-secondary dark:text-secondary-fixed-dim font-label-md text-label-md h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline flex flex-col h-full py-unit px-unit z-50">
+<div class="mb-8 px-4 mt-6">
+<h1 class="font-headline-lg text-headline-lg font-black text-primary dark:text-primary-fixed-dim mb-1">My BloodGift</h1>
+<h2 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Management Console</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-75">Role-Based Access</p>
+</div>
+<div class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 dark:hover:bg-inverse-surface transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 dark:hover:bg-inverse-surface transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="bloodtype">bloodtype</span>
+                Donations
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 dark:hover:bg-inverse-surface transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="emergency_share">emergency_share</span>
+                Requests
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 dark:hover:bg-inverse-surface transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                Inventory
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary font-bold bg-secondary-container/10 border-r-4 border-secondary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+                Users
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/50 dark:hover:bg-inverse-surface transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                Reports
+            </a>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/50 mb-4 px-2">
+<button class="w-full bg-primary-container text-on-primary rounded-lg py-2 px-4 mb-4 font-label-md flex items-center justify-center gap-2 hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Urgent Request
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+                    Logout
+                </a>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen max-w-container-max-width bg-surface">
+<!-- Top App Bar -->
+<header class="bg-surface dark:bg-inverse-surface text-primary dark:text-primary-fixed-dim font-body-md text-body-md w-full top-0 sticky border-b border-outline-variant dark:border-outline flat no shadows flex justify-between items-center px-margin-desktop py-unit z-40 h-16">
+<div class="flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full font-label-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Search users, hospitals, or logs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors rounded-full cursor-pointer active:opacity-80 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors rounded-full cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden cursor-pointer ml-2">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional headshot of a healthcare administrator in a clean, modern, light-mode clinical setting. The lighting is soft and neutral, conveying trust and reliability. High-resolution, crisp details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwIFOtBfgcNSFw6LSOavaTE1QOhKFWPyHsbrt1O3HwyJIMtGZHVozxndsI5HT9AloA63toETu6M117M2VaUOKzSRb9oU_1e_fKAUZO2Vnqs795NhEuXuEwQMLWdFFzHppEGEWPvvOU-StgCZqY2V3UjKvC7WTNd2Kgx9CWM2d2BKPEusjr5j8mPYsyffSxzyrpHVXPsI8VVbWkVXJx00gRt5YgyhAmj5oHvnn9LlRyIrh3yeML3aCAQQ"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-margin-desktop flex-1 space-y-8">
+<!-- Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">User Management</h2>
+<p class="font-body-md text-on-surface-variant">Manage system access, roles, and administrative privileges.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 border border-secondary text-secondary rounded-lg font-label-md hover:bg-secondary/5 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export List
+                    </button>
+<button class="px-4 py-2 bg-primary-container text-on-primary rounded-lg font-label-md hover:bg-primary transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+                        Add User
+                    </button>
+</div>
+</div>
+<!-- Health Metrics Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-container/10 rounded-full blur-xl group-hover:bg-primary-container/20 transition-all"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<p class="font-label-md text-on-surface-variant">Active Donors</p>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mt-1">12,450</h3>
+</div>
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-tertiary font-label-sm relative z-10">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+<span>+4.2% from last month</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary/10 rounded-full blur-xl group-hover:bg-secondary/20 transition-all"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<p class="font-label-md text-on-surface-variant">Total Donations</p>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mt-1">45,892</h3>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">bloodtype</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-tertiary font-label-sm relative z-10">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+<span>+12.5% YoY</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-outline/10 rounded-full blur-xl group-hover:bg-outline/20 transition-all"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<p class="font-label-md text-on-surface-variant">Registered Hospitals</p>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mt-1">142</h3>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">local_hospital</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm relative z-10">
+<span class="material-symbols-outlined text-[16px]">horizontal_rule</span>
+<span>No change</span>
+</div>
+</div>
+</div>
+<!-- Main Content Area: User Table & Alerts side-by-side -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- User Table Section -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col h-[500px]">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest/50 backdrop-blur-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Directory</h3>
+<div class="flex gap-2">
+<select class="bg-surface border border-outline-variant rounded-lg px-3 py-1.5 font-label-sm text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+<option>All Roles</option>
+<option>Admin</option>
+<option>Coordinator</option>
+<option>Nurse</option>
+</select>
+<select class="bg-surface border border-outline-variant rounded-lg px-3 py-1.5 font-label-sm text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+<option>Status: All</option>
+<option>Active</option>
+<option>Inactive</option>
+</select>
+</div>
+</div>
+<div class="overflow-y-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low sticky top-0 z-10">
+<tr>
+<th class="p-4 font-label-sm text-on-surface-variant uppercase border-b border-outline-variant">User</th>
+<th class="p-4 font-label-sm text-on-surface-variant uppercase border-b border-outline-variant">Role</th>
+<th class="p-4 font-label-sm text-on-surface-variant uppercase border-b border-outline-variant">Location</th>
+<th class="p-4 font-label-sm text-on-surface-variant uppercase border-b border-outline-variant">Status</th>
+<th class="p-4 font-label-sm text-on-surface-variant uppercase border-b border-outline-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-on-surface">
+<!-- Row 1 -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-low/50 transition-colors">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary font-label-sm">
+                                                SJ
+                                            </div>
+<div>
+<p class="font-label-md">Sarah Jenkins</p>
+<p class="text-[12px] text-on-surface-variant">s.jenkins@mbg.org</p>
+</div>
+</div>
+</td>
+<td class="p-4">Central Admin</td>
+<td class="p-4 text-on-surface-variant">HQ - City Center</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-container/20 text-tertiary font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Active
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-low/50 transition-colors">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-primary font-label-sm">
+                                                DR
+                                            </div>
+<div>
+<p class="font-label-md">Dr. Robert Chen</p>
+<p class="text-[12px] text-on-surface-variant">r.chen@metrohealth.org</p>
+</div>
+</div>
+</td>
+<td class="p-4">Hospital Lead</td>
+<td class="p-4 text-on-surface-variant">Metro General</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-container/20 text-tertiary font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Active
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-low/50 transition-colors bg-surface-variant/10">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-label-sm">
+                                                AM
+                                            </div>
+<div>
+<p class="font-label-md text-on-surface-variant">Alicia Martinez</p>
+<p class="text-[12px] text-on-surface-variant/70">a.martinez@mbg.org</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-on-surface-variant">Field Coordinator</td>
+<td class="p-4 text-on-surface-variant">North District</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant"></span> Inactive
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-low/50 transition-colors">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary font-label-sm">
+                                                KW
+                                            </div>
+<div>
+<p class="font-label-md">Kevin Wright</p>
+<p class="text-[12px] text-on-surface-variant">k.wright@mbg.org</p>
+</div>
+</div>
+</td>
+<td class="p-4">Inventory Mgr</td>
+<td class="p-4 text-on-surface-variant">Central Blood Bank</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary-container/20 text-tertiary font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Active
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Column: Alerts & Maintenance -->
+<div class="flex flex-col gap-6">
+<!-- System Alerts Card -->
+<div class="bg-surface-container-lowest border border-error/30 rounded-xl overflow-hidden">
+<div class="bg-error/10 p-4 border-b border-error/20 flex items-center gap-2 text-error">
+<span class="material-symbols-outlined">warning</span>
+<h3 class="font-label-md font-bold">System Alerts</h3>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-error text-[20px] mt-0.5">bloodtype</span>
+<div>
+<p class="font-label-md text-on-surface">O- Negative Shortage</p>
+<p class="text-[12px] text-on-surface-variant mt-1">Metro General reported critical shortage. Initiating emergency call-out protocol.</p>
+<button class="text-primary font-label-sm mt-2 hover:underline">Review Protocol</button>
+</div>
+</div>
+<hr class="border-outline-variant/50"/>
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-outline text-[20px] mt-0.5">update</span>
+<div>
+<p class="font-label-md text-on-surface">Scheduled Maintenance</p>
+<p class="text-[12px] text-on-surface-variant mt-1">Database optimization scheduled for Sunday 02:00 AM EST. Expected downtime: 30 mins.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Report Gen -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Generate Report</h3>
+<p class="text-[12px] text-on-surface-variant mb-6">Select parameters to compile system data.</p>
+<div class="space-y-4">
+<div>
+<label class="block font-label-sm text-on-surface mb-1">Report Type</label>
+<select class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+<option>Monthly Blood Flow Summary</option>
+<option>Donor Retention Rates</option>
+<option>Hospital Request Fulfillment</option>
+<option>System Audit Log (30 Days)</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-sm text-on-surface mb-1">Start Date</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none" type="date"/>
+</div>
+<div>
+<label class="block font-label-sm text-on-surface mb-1">End Date</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 font-body-md text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none" type="date"/>
+</div>
+</div>
+<button class="w-full bg-surface-container-highest text-on-surface border border-outline-variant rounded-lg py-2 font-label-md mt-4 hover:bg-surface-variant transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+                                Compile Report
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface text-on-surface-variant dark:text-surface-variant font-label-sm text-label-sm w-full bottom-0 border-t border-outline-variant dark:border-outline flat no shadows flex flex-col md:flex-row justify-between items-center px-margin-desktop py-gutter z-40 mt-auto">
+<div class="font-label-md text-label-md font-bold text-on-surface mb-4 md:mb-0">
+                © 2024 My BloodGift. All rights reserved. Precise Blood Management Systems.
+            </div>
+<div class="flex gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Legal</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer" href="#">Contact Support</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer font-bold" href="#">Emergency Hotline</a>
+</div>
+</footer>
+</main>
+</body></html>

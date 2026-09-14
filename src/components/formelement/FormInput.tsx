@@ -1,17 +1,17 @@
-import React from "react";
+import React from "react"
 
 type Inputelement = {
-  label?: string;
-  id?: string;
-  name?: string;
-  error?: { message?: string } | string;
-  className?: string;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+  label?: string
+  id?: string
+  name?: string
+  error?: { message?: string } | string
+  className?: string
+} & React.InputHTMLAttributes<HTMLInputElement>
 
 export const FormInput = React.forwardRef<HTMLInputElement, Inputelement>(
   ({ label, id, name, error, className = "", ...props }, ref) => {
-    const inputId = id || name;
-    const errorMessage = typeof error === "string" ? error : error?.message;
+    const inputId = id || name
+    const errorMessage = typeof error === "string" ? error : error?.message
 
     return (
       <div className={`flex flex-col gap-1 ${className}`}>
@@ -29,11 +29,8 @@ export const FormInput = React.forwardRef<HTMLInputElement, Inputelement>(
         />
         {errorMessage && <p className="mt-0.5 text-sm text-red-500">{errorMessage}</p>}
       </div>
-    );
-  }
-);
+    )
+  },
+)
 
-FormInput.displayName = "FormInput";
-
-
-                  
+FormInput.displayName = "FormInput"

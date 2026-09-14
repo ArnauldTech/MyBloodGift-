@@ -2,6 +2,28 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+## Developpement
+
+Le serveur Vite demarre par defaut sur `http://127.0.0.1:3000`. Le port peut
+etre personnalise sans modifier la configuration :
+
+```powershell
+$env:VITE_DEV_PORT = "3001"
+npm run dev
+```
+
+## Analyse intelligente
+
+Les établissements disposent d’une page **Analyse IA** dédiée. Elle présente
+les prévisions de consommation, les niveaux de risque, les recommandations de
+campagne et la qualité des données. Les résultats sont volontairement
+explicables : la première version utilise une moyenne des demandes historiques,
+compare cette projection au stock non expiré et indique ses limites lorsque
+l’historique est insuffisant. Elle ne remplace jamais la validation médicale.
+
+La valeur `strictPort: false` permet a Vite de choisir automatiquement le port
+suivant si le port configure est deja utilise.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)

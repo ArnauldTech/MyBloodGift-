@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Blood Inventory - My BloodGift</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#54a0fe",
+                        "on-error": "#ffffff",
+                        "on-background": "#111d23",
+                        "on-tertiary-container": "#daffd1",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#e3f0f8",
+                        "primary-fixed": "#ffdad6",
+                        "on-secondary-fixed": "#001c3a",
+                        "inverse-surface": "#263238",
+                        "secondary": "#005faf",
+                        "secondary-fixed": "#d4e3ff",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#ffb3ac",
+                        "on-surface": "#111d23",
+                        "surface-container-highest": "#d7e4ec",
+                        "inverse-on-surface": "#e6f3fb",
+                        "on-primary-fixed": "#410003",
+                        "tertiary": "#016619",
+                        "surface": "#f4faff",
+                        "on-surface-variant": "#5b403d",
+                        "outline": "#8f6f6c",
+                        "surface-bright": "#f4faff",
+                        "primary-fixed-dim": "#ffb3ac",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#fff2f0",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#002204",
+                        "surface-container-low": "#e9f6fd",
+                        "on-secondary-fixed-variant": "#004786",
+                        "tertiary-container": "#298030",
+                        "surface-container-high": "#ddeaf2",
+                        "surface-variant": "#d7e4ec",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#82db7e",
+                        "primary": "#af101a",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#e4beba",
+                        "on-secondary-container": "#003567",
+                        "tertiary-fixed": "#9df898",
+                        "primary-container": "#d32f2f",
+                        "background": "#f4faff",
+                        "secondary-fixed-dim": "#a5c8ff",
+                        "surface-dim": "#cfdce4",
+                        "surface-tint": "#ba1a20",
+                        "on-tertiary-fixed-variant": "#005312",
+                        "on-primary-fixed-variant": "#930010"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-desktop": "32px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max-width": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-64 flex flex-col z-40 py-6 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant hidden md:flex">
+<!-- Header -->
+<div class="px-6 mb-8 flex flex-col items-center">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary mb-3">
+<img alt="Hospital Administrator Profile" class="w-full h-full object-cover" data-alt="Professional portrait of a hospital administrator in a clinical setting. Soft, natural lighting highlighting a confident and trustworthy expression. Clean white coat, modern corporate healthcare aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB92N82rERy9SOEryYEf_91zl4WH3_JPKxmb8jbUD0dnt2qhjHDtnhE4cBZ5VdMjSbUlfzk5ZXVXbuYe0j1Q6DgQEFJSiP_DZSNr-a1pkMk13UPkN7QZNMCaUqxh_OlQ1RcbZgb-AEZcU1m5RbSY8v6NFM932U1Fmf_kJ22OFzVz7cvNfx3Mgcz5VLRn95HLgxFlLmxw5aOO3SIzJ0rsPjRQpoCZ6Z7eh9dBcpSLvhb1J7GltrOIAf5vQ"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-extrabold text-primary dark:text-primary-fixed text-center">Hospital Portal</h1>
+<p class="font-body-md text-body-md text-on-surface-variant text-center">Central General Hospital</p>
+</div>
+<!-- Navigation Tabs -->
+<ul class="flex-1 flex flex-col gap-2 w-full font-body-md text-body-md">
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg px-4 py-3 mx-2 hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="bloodtype">bloodtype</span>
+                    Inventory
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+                    Donor Validation
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="e911_emergency">e911_emergency</span>
+                    Requests
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                    Reports
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-3 mx-2 hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<!-- CTA & Footer Tabs -->
+<div class="px-4 mt-auto flex flex-col gap-4">
+<button class="w-full bg-primary-container text-on-primary py-3 rounded-lg font-label-md text-label-md font-bold shadow-sm hover:opacity-90 transition-opacity">
+                Add Stock
+            </button>
+<ul class="flex flex-col gap-2 font-body-md text-body-md">
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                        Help Center
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                        Logout
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 p-margin-mobile md:p-margin-desktop overflow-y-auto">
+<!-- Top Bar (Mobile Only) / Header (Desktop) -->
+<div class="flex justify-between items-center mb-8 border-b border-outline-variant pb-4 md:border-none md:pb-0">
+<div class="md:hidden flex items-center gap-3">
+<button class="text-primary p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Inventory</span>
+</div>
+<h2 class="hidden md:block font-headline-lg text-headline-lg text-on-background">Blood Inventory Management</h2>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-error rounded-full"></span>
+</button>
+<button class="md:hidden p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+<!-- Filters Section -->
+<section class="mb-8 bg-surface-container-lowest rounded-xl p-6 border border-outline-variant shadow-sm flex flex-col md:flex-row md:items-end gap-6">
+<div class="flex-1 w-full max-w-sm">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Search Inventory</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface rounded-lg border border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary outline-none font-body-md text-body-md text-on-surface transition-all" placeholder="Bag ID, Donor ID..." type="text"/>
+</div>
+</div>
+<div class="flex-1 flex flex-wrap gap-4">
+<div class="flex flex-col">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Component Type</label>
+<select class="px-4 py-2.5 bg-surface rounded-lg border border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary outline-none font-body-md text-body-md text-on-surface appearance-none pr-10 cursor-pointer">
+<option value="all">All Components</option>
+<option value="whole_blood">Whole Blood</option>
+<option value="plasma">Plasma</option>
+<option value="platelets">Platelets</option>
+<option value="red_cells">Red Cells</option>
+</select>
+</div>
+<div class="flex flex-col">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Status</label>
+<select class="px-4 py-2.5 bg-surface rounded-lg border border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary outline-none font-body-md text-body-md text-on-surface appearance-none pr-10 cursor-pointer">
+<option value="all">All Statuses</option>
+<option value="critical">Critical Shortage</option>
+<option value="expiring">Expiring Soon</option>
+<option value="adequate">Adequate Stock</option>
+</select>
+</div>
+</div>
+<button class="bg-secondary text-on-secondary px-6 py-2.5 rounded-lg font-label-md text-label-md font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-colors whitespace-nowrap self-end md:self-auto h-fit">
+                Apply Filters
+            </button>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Main Inventory Grid -->
+<div class="lg:col-span-2 space-y-6">
+<h3 class="font-headline-md text-headline-md text-on-background mb-4">Current Stock Levels</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+<!-- Blood Type Card: O+ (Critical) -->
+<div class="bg-error-container rounded-xl p-5 border border-error/30 relative overflow-hidden flex flex-col">
+<div class="absolute top-0 right-0 p-3">
+<span class="material-symbols-outlined text-error" data-weight="fill">warning</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center font-headline-md text-headline-md text-error shadow-sm border border-error/20">
+                                O+
+                            </div>
+<div>
+<h4 class="font-label-md text-label-md text-on-error-container opacity-80">Whole Blood</h4>
+<p class="font-body-lg text-body-lg font-bold text-on-error-container">12 Units</p>
+</div>
+</div>
+<div class="mb-4">
+<div class="flex justify-between font-label-sm text-label-sm text-on-error-container mb-1 opacity-90">
+<span>Target: 50</span>
+<span>24%</span>
+</div>
+<div class="w-full bg-surface-container-lowest rounded-full h-1.5 overflow-hidden">
+<div class="bg-error h-1.5 rounded-full" style="width: 24%"></div>
+</div>
+</div>
+<div class="text-label-sm text-label-sm text-on-error-container opacity-80 mb-4 flex-1">
+<span class="font-bold">3</span> units expiring in &lt; 48hrs
+                        </div>
+<button class="w-full bg-error text-on-error py-2 rounded-lg font-label-md text-label-md font-bold hover:bg-primary-container transition-colors mt-auto">
+                            Emergency Restock
+                        </button>
+</div>
+<!-- Blood Type Card: O- (Low) -->
+<div class="bg-surface-container-lowest rounded-xl p-5 border border-secondary-container/50 flex flex-col relative shadow-sm">
+<div class="absolute top-0 right-0 p-3 opacity-50">
+<span class="material-symbols-outlined text-secondary">bloodtype</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant flex items-center justify-center font-headline-md text-headline-md shadow-sm border border-secondary/20">
+                                O-
+                            </div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant">Whole Blood</h4>
+<p class="font-body-lg text-body-lg font-bold text-on-surface">24 Units</p>
+</div>
+</div>
+<div class="mb-4">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-1">
+<span>Target: 40</span>
+<span>60%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-secondary-container h-1.5 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<div class="text-label-sm text-label-sm text-on-surface-variant mb-4 flex-1">
+                            Shelf life adequate
+                        </div>
+<button class="w-full border border-secondary text-secondary py-2 rounded-lg font-label-md text-label-md font-bold hover:bg-secondary hover:text-on-secondary transition-colors mt-auto">
+                            Request Restock
+                        </button>
+</div>
+<!-- Blood Type Card: A+ (Adequate) -->
+<div class="bg-surface-container-lowest rounded-xl p-5 border border-tertiary-fixed-dim/50 flex flex-col relative shadow-sm">
+<div class="absolute top-0 right-0 p-3 opacity-50">
+<span class="material-symbols-outlined text-tertiary">bloodtype</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center font-headline-md text-headline-md shadow-sm border border-tertiary/20">
+                                A+
+                            </div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant">Whole Blood</h4>
+<p class="font-body-lg text-body-lg font-bold text-on-surface">58 Units</p>
+</div>
+</div>
+<div class="mb-4">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-1">
+<span>Target: 60</span>
+<span>96%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary h-1.5 rounded-full" style="width: 96%"></div>
+</div>
+</div>
+<div class="text-label-sm text-label-sm text-on-surface-variant mb-4 flex-1">
+<span class="font-bold text-error">5</span> units expiring soon
+                        </div>
+<button class="w-full bg-surface-container-high text-on-surface-variant py-2 rounded-lg font-label-md text-label-md font-medium hover:bg-surface-dim transition-colors mt-auto">
+                            Manage Stock
+                        </button>
+</div>
+<!-- Blood Type Card: B+ (Adequate) -->
+<div class="bg-surface-container-lowest rounded-xl p-5 border border-tertiary-fixed-dim/50 flex flex-col relative shadow-sm">
+<div class="absolute top-0 right-0 p-3 opacity-50">
+<span class="material-symbols-outlined text-tertiary">bloodtype</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center font-headline-md text-headline-md shadow-sm border border-tertiary/20">
+                                B+
+                            </div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant">Whole Blood</h4>
+<p class="font-body-lg text-body-lg font-bold text-on-surface">42 Units</p>
+</div>
+</div>
+<div class="mb-4">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-1">
+<span>Target: 40</span>
+<span>105%</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary h-1.5 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="text-label-sm text-label-sm text-on-surface-variant mb-4 flex-1">
+                            Shelf life adequate
+                        </div>
+<button class="w-full bg-surface-container-high text-on-surface-variant py-2 rounded-lg font-label-md text-label-md font-medium hover:bg-surface-dim transition-colors mt-auto">
+                            Manage Stock
+                        </button>
+</div>
+</div>
+</div>
+<!-- Side Panel: Recent Movements & Stats -->
+<div class="lg:col-span-1 space-y-6">
+<!-- Quick Stats Widget -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant shadow-sm">
+<h3 class="font-headline-md text-headline-md text-on-background mb-4">Daily Overview</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-surface rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">arrow_downward</span>
+<span class="font-body-md text-body-md text-on-surface">Units Received</span>
+</div>
+<span class="font-headline-md text-headline-md text-tertiary">+14</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">arrow_upward</span>
+<span class="font-body-md text-body-md text-on-surface">Units Dispatched</span>
+</div>
+<span class="font-headline-md text-headline-md text-secondary">-8</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-error-container/30 rounded-lg border border-error/20">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error">delete</span>
+<span class="font-body-md text-body-md text-on-surface">Units Expired</span>
+</div>
+<span class="font-headline-md text-headline-md text-error">2</span>
+</div>
+</div>
+</div>
+<!-- Recent Movements Log -->
+<div class="bg-surface-container-lowest rounded-xl p-6 border border-outline-variant shadow-sm h-[400px] flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-headline-md text-on-background">Recent Movements</h3>
+<button class="text-secondary font-label-sm text-label-sm hover:underline">View All</button>
+</div>
+<div class="flex-1 overflow-y-auto pr-2 space-y-4">
+<!-- Movement Item: Dispatched -->
+<div class="flex gap-4 p-3 hover:bg-surface-container transition-colors rounded-lg group cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-secondary">local_shipping</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-md text-on-surface font-medium truncate">Dispatched to OR-3</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">2 Units • O- Whole Blood</p>
+<p class="font-label-sm text-label-sm text-outline mt-1">10 mins ago</p>
+</div>
+</div>
+<!-- Movement Item: Received -->
+<div class="flex gap-4 p-3 hover:bg-surface-container transition-colors rounded-lg group cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary">inventory_2</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-md text-on-surface font-medium truncate">Received from Donation Center</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">5 Units • A+ Plasma</p>
+<p class="font-label-sm text-label-sm text-outline mt-1">45 mins ago</p>
+</div>
+</div>
+<!-- Movement Item: Expired -->
+<div class="flex gap-4 p-3 hover:bg-surface-container transition-colors rounded-lg group cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="w-10 h-10 rounded-full bg-error-container/40 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-error">auto_delete</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-md text-on-surface font-medium truncate">Auto-discarded (Expired)</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">1 Unit • AB- Platelets</p>
+<p class="font-label-sm text-label-sm text-outline mt-1">2 hours ago</p>
+</div>
+</div>
+<!-- Movement Item: Received -->
+<div class="flex gap-4 p-3 hover:bg-surface-container transition-colors rounded-lg group cursor-pointer border border-transparent hover:border-outline-variant">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary">inventory_2</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-body-md text-body-md text-on-surface font-medium truncate">Received from Walk-in Donor</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">1 Unit • O+ Whole Blood</p>
+<p class="font-label-sm text-label-sm text-outline mt-1">3 hours ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

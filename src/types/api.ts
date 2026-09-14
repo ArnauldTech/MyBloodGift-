@@ -1,68 +1,53 @@
 /**
-* 💡 TYPAGE TYPESCRIPT POUR L'API @learn (FastAPI)
-*/
+ * 💡 TYPAGE TYPESCRIPT POUR L'API @learn (FastAPI)
+ */
 
 // --- 1. TYPES AUTHENTIFICATION ---
 export interface User {
-  id: number;
-  nom: string;
-  prenom: string;
-  email: string;
+  id: number
+  first_name: string
+  last_name: string
+  email: string
+  role?: "donneur" | "demandeur" | "hopital" | "admin"
+  phone?: string | null
+  blood_group?: "A" | "B" | "AB" | "O" | null
+  rhesus?: "+" | "-" | null
+  available?: boolean
+  establishment_name?: string | null
+  establishment_type?: string | null
+  license_number?: string | null
+  city?: string | null
 }
 
 export interface UserLoginPayload {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 export interface UserSignUpPayload {
-  nom: string;
-  email: string;
-  password: string;
-  role: "Demandeur" | "Donneur" | "admin" | "hospital";
+  first_name: string
+  last_name: string
+  email: string
+  password: string
+  role: "donneur" | "demandeur" | "hopital" | "admin"
+  phone?: string
+  blood_group?: User["blood_group"]
+  rhesus?: User["rhesus"]
+  address?: string
+  establishment_name?: string
+  establishment_type?: string
+  license_number?: string
+  city?: string
 }
 
 export interface LoginResponse {
-  message: string;
-  user: string;
-  access_token: string;
+  message?: string
+  user: string
+  access_token: string
+  role?: "donneur" | "demandeur" | "hopital" | "admin"
 }
 
 export interface SignUpResponse {
-  message: string;
-  user: string;
-}
-
-// --- 2. TYPES ÉTUDIANTS ---
-export interface Etudiant {
-  id?: number;
-  nom: string;
-  prenom: string;
-  age: number;
-  filiere: string;
-}
-
-export interface EtudiantsResponse {
-  message: string;
-  etudiants: Etudiant[];
-}
-
-// --- 3. TYPES TÂCHES ---
-export interface Task {
-  id: number;
-  title: string;
-  description?: string;
-  done: boolean;
-}
-
-export interface TaskCreatePayload {
-  title: string;
-  description?: string;
-  done?: boolean;
-}
-
-export interface TaskUpdatePayload {
-  title?: string;
-  description?: string;
-  done?: boolean;
+  message: string
+  user: string
 }
